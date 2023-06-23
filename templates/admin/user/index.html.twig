@@ -1,0 +1,90 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}user index{% endblock %}
+
+{% block body %}
+    <h1>user index </h1>
+
+    <label class="label" for="recherche">Tapez dans la barre l'email pour retrouver le user: </label><!-- Notre champ de recherche avec un id-->
+          <input type="text" name="recherche" id="user-search"/>
+<div id="result"> 
+ 
+</div>
+
+   <label class="label" for="recherche">Tapez dans la barre le nom du client: </label><!-- Notre champ de recherche avec un id-->
+          <input type="text" name="recherchename" id="user-searchname"/>
+<div id="resultname"> 
+
+</div>
+
+   {% for user in users %}
+                
+                <h3>Nom</h3>
+                  <p>{{ user.fullName }}</p>
+        
+                <h3>E-mail</h3>
+                 <p>{{ user.email }}</p>
+            
+                <h3>Role</h3>
+                 <p>{{ user.roles[0]   }}</p>
+           
+             <hr>
+            
+        {% endfor %}
+ 
+
+
+
+  {# <p>   {{ dump (users) }}</p> 
+ <div class="onlydesktop">
+     <table class="tableau">
+        <thead class="tableau">
+            <tr>
+                <th>Nom</th>
+                <th>E-mail</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+     
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="tableau">{{ user.fullName }}</td>
+                 <td class="tableau">{{ user.email}}</td>
+                <td class="tableau">{{ user.roles[0] }}</td>
+                   
+            </tr>
+            
+        {% endfor %}
+        </tbody>
+    </table>
+   </div>
+
+{#}
+ {#}   <div class="onlymobil">
+     {% for user in users %}
+           
+           
+                <h3>Nom</h3>
+                  <p>{{ user.fullName }}</p>
+          
+               
+           
+                <h3>E-mail</h3>
+                 <p>{{ user.email }}</p>
+            
+                <h3>Role</h3>
+                 <p>{{ user.roles[0]   }}</p>
+           
+             <hr>
+            
+        {% endfor %}
+    
+   </div>
+  </div>#}
+  <script src="/assets/js/searchuser.js" defer></script> 
+  <script src="/assets/js/searchusername.js" defer></script> 
+{% endblock %} 
+
+
+

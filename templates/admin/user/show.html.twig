@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}mon compte
+{% endblock %}
+
+{% block body %}
+
+   <main class="container">
+      <h1> Compte du client
+      </h1>
+   
+{#}<p>   {{ dump (user) }}</p> #}
+
+
+                <h3>Nom</h3>
+                     <h3>
+                  {{ user.fullName }}  
+                     </h3>
+                     <h3> Email </h3>
+                     <h3>
+                  {{ user.email }}  
+                     </h3>
+            
+           <div class ="purchasedesktop">
+   <h1> Commandes du client</h1>
+    <table class="tableau">
+    <thead>
+    <tr>
+        <th>Numéro de commande</th>
+        <th>Adresse</th>
+        <th>Code Postal</th>
+        <th>Ville</th>
+        <th>Date de la commande</th>
+        <th>Détail <th/>
+        <th>Total de la commande</th>
+       
+    </tr>
+    </thead>
+    <tbody>
+{#    {{ dump(purchases) }}#}
+
+        {% for p in purchases %}
+          <tr>
+              <td>{{ p.id  }}</td>
+              <td>{{ p.address }}</td>
+              <td>{{ p.postalCode }}</td>
+              <td>{{ p.city }}</td>
+              <td>{{ p.createdAt| date('Y-m-d H:i:s') }} </td>
+               <td> {% for item in p.purchaseItems  %}  {{ item.quantity }} x {{ item.calendarName }} ({{ item.calendarPrice /100 }}€ )  {%  endfor %} </td>
+                <td></td>
+              <td> {{ p.total / 100 }}€ total de la commande </td>
+              
+    {%  endfor %}
+    </tbody>
+    </table>
+  </div>  
+
+ 
+{#    {{ dump(purchases) }}#}
+
+   <div class ="purchasemobil">
+   <h1>Commandes du client</h1>
+ 
+        
+
+        {% for p in purchases %}
+        <p  class="item-mobile">Numéro de commande<p>
+        <p class="datatitem">{{ p.id  }}</p>
+        <p class="item-mobil">Adresse </p> 
+        <p class="datatitem">{{ p.address }}</p>
+        <p class="item-mobil">Code Postal<p>
+        <p class="datatitem">{{ p.postalCode }}</p>
+        <p class="item-mobil">Ville<p>
+        <p class="datatitem">{{ p.city }}</p>
+        <p class="item-mobil">Date de la commande </p> 
+        <p class="datatiteme">{{ p.createdAt| date('Y-m-d H:i:s') }}</p>
+      
+         {%  endfor %}
+
+      
+       
+        
+  </div>  
+    
+   </main>
+{% endblock %}

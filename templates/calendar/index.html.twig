@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}calendar index{% endblock %}
+
+{% block body %}
+    <h1>Index des séances</h1>
+ <!--  <label class="label" for="recherche">Cliquez dans la barre de recherche ci dessous pour trouver la date de votre séance: </label><!-- Notre champ de recherche avec un id
+          <input type="date" id="meeting-time"
+       name="meeting-time" value="
+       {#}<?= date('Y-m-d H:i:s') ?>"  required pattern="\d{4}-\d{2}-\d{2}"/> #}
+-->
+
+        <div id="result">  {% for calendar in calendars %}
+                
+          <div class="calendaraccueil"> 
+             <p class="milieu">  Date :  {{ calendar.start|date('Y-m-d H:i:s') }}</p>
+            <p class="milieu">    {{ calendar.title }}  </p>
+             <p class="milieu"> <a href="{{ path('app_calendar_show', {'id': calendar.id}) }}">détails</a>
+             </p>
+          </div>
+       
+    {% endfor %}  </div>
+                 
+   {#}        
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>action</th>
+                 <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for calendar in calendars %}
+            <tr>
+                <td>{{ calendar.id }}</td>
+                <td>{{ calendar.title }}</td>
+                <td>{{ calendar.category }}</td>
+                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
+                 <td>{{ calendar.price }}</td>
+                <td>{{ calendar.stock }}</td>
+                <td>
+                    <a href="{{ path('app_calendar_show', {'id': calendar.id}) }}">détails</a>
+                </td>
+                 <td>
+                    <a href="{{ path('cart_add', {'id': calendar.id}) }}">ajouter au panier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td> Aucune correspondance trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>#}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Hello CustomerController!{% endblock %}
+
+{% block body %}
+
+   <label class="label" for="recherche">Tapez dans la barre l'email pour retrouver le client: </label><!-- Notre champ de recherche avec un id-->
+          <input type="text" name="recherche" id="customer-search"/>
+<div id="resultcustomer">
+ 
+</div>
+
+{#}
+  {% for customer in customers %}
+<h3>   Nom: {{ customer.name  }}</h3>
+
+<h3> Prénom:   {{ customer.firstname  }}</h3
+
+<h3> Email:   {{ customer.email  }}</h3>
+
+<h3> Tel:  {{ customer.phone }}</h3>
+ {% endfor %}  #}
+
+   <script src="/assets/js/searchcustomer.js" defer></script> 
+{% endblock %}
+
+

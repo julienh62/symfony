@@ -1,0 +1,31 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}mon compte
+{% endblock %}
+
+{% block body %}
+
+   <main class="container">
+      <h1> Compte du client
+      </h1>
+   
+{#}<p>   {{ dump (customer) }}</p> #}
+
+
+                <h3>Nom</h3>
+                     <h3>
+                  {{ customer.name }}  
+                     </h3>
+                     <h3> Email </h3>
+                     <h3>
+                  {{ customer.email }}  
+                     </h3>
+               
+
+
+
+
+
+    
+   </main>
+{% endblock %}

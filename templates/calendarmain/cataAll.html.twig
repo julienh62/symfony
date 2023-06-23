@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}eoliacalendarcata!{% endblock %}
+
+{% block body %}
+{#me donne kle json de data#}
+{#{{dump(data)}}  #}
+<h1> Calendrier des séances catamaran</h1>
+<div class="calendaraccueil"> 
+<img src="{{ asset('assets/uploads/miniature-cata-accueil1.jpg')}}" alt="char à voile Baie de Somme">
+<div class="milieu">
+<p class="milieu" >Prix par personne/ 60€ </p>
+<p class="milieu" > 48€ pour les moins de 25 ans</p>
+<p class="milieu" > A partir de 11 ans et 1,40 m</p>
+</div>
+</div>
+<p class="milieu" >Cliquez sur la séance où vous souhaitez réserver. </p>
+<div id="calendrier"> </div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+  <script {# src="/assets/js/calendar.js">  #}
+window.onload = () => {
+    let calendarElt = document.querySelector("#calendrier")
+
+    let calendar = new FullCalendar.Calendar(calendarElt, {
+        initialView: 'timeGridFourDay',
+        views: {
+            timeGridFourDay: {
+                type: 'timeGrid',
+                duration: { days: 4 }
+            }
+        },       locale: 'fr',
+        timeZone: 'Europe/Paris',
+        headerToolbar: {
+            start: 'prev, next today',
+            center: 'title',
+            end: 'dayGridMonth, timeGridFourDay',
+        },
+        buttonText: {
+            today: 'Aujourd\'hui',
+            month: 'Mois',
+            timeGridFourDay: '4jours',
+        },
+
+
+
+
+
+        //probleme secu avec raw?
+         events: {{ data|raw }},
+         //editable pour glisser deposer et agrandir
+      //   editable: true,
+         //agrandir depuis le haut de la cellule
+      //   eventResizableFromStart: true
+})
+
+//crée un objet (event et oldevent(date d'origine)) à chaque fois que je clique un rdv
+  calendar.on('eventClick', (e) => {
+    //on crée une url
+  //  let url = `/admin/api/${e.event.id}/edit`
+    let donnees = {
+      "id": e.event.id,
+      
+            }
+            let id = donnees.id;
+            let url = "https://127.0.0.1:8000/calendar/" + id ;
+window.open(url, '_blank');
+ 
+
+})
+
+  
+
+calendar.render()
+}
+</script> 
+{% endblock %}
+
